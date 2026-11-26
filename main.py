@@ -16,6 +16,10 @@ def main():
     """Write the entry line to /output/entry.txt."""
     import os
 
+    # The sealed gate admits only 1-200 chars: fail loudly rather than
+    # shipping an invalid entry.
+    assert 1 <= len(LINE) <= 200, f"entry line is {len(LINE)} chars"
+
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as f:
         f.write(LINE)
